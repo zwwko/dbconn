@@ -53,10 +53,13 @@ public class MongoDataSourceConfig extends AbstractMongoConfiguration{
 	@Override
 	@Bean(name = "mongods")
 	public Mongo mongo() throws Exception {
-		ServerAddress serverAdress = new  ServerAddress(dbhost, Integer.valueOf(dbport));        
-		MongoCredential credential = MongoCredential.createMongoCRCredential(username, dbname , password.toCharArray());
+//		ServerAddress serverAdress = new  ServerAddress(dbhost, Integer.valueOf(dbport));
+//		MongoCredential credential = MongoCredential.createMongoCRCredential(username, dbname , password.toCharArray());
 		//Do not use new Mongo(), is deprecated.
-	    Mongo mongo =  new MongoClient(serverAdress, Arrays.asList(credential));
+//	    Mongo mongo =  new MongoClient(serverAdress, Arrays.asList(credential));
+
+		Mongo mongo = new MongoClient("localhost", 27017);
+
 	    mongo.setWriteConcern(WriteConcern.SAFE);
 	    return mongo;
 	}
